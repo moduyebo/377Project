@@ -9,13 +9,9 @@ app.use(express.json());
 
 //app.use(express.static('public'));
 
-app.get('/',(req, res) => {
-    fetch('about')
-    .catch(err => {
-        console.log("oops");
-        console.error(err);
-    })
-})//res.render('index'));
+app.get('/', function(req, res) {
+    res.sendFile(path.join(__dirname + '/about.html'));
+});
 
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
