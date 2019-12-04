@@ -3,14 +3,16 @@ const fetch = require('node-fetch');
 
 const app = express();
 const port = process.env.PORT || 3000;
-
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-
-app.get('/', function(req, res) {
-    res.status(200).send('index');
+app.listen(port, () => {
+    console.log(`Starting server at ${port}`);
 });
 
+app.use(express.static('public'));
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+//app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+
+
+
  
