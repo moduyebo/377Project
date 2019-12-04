@@ -9,7 +9,7 @@ app.use(express.json());
 
 app.use(express.static('public'));
 
-app.get('/', (req, res) => res.render('Index'));
+//app.get('/', (req, res) => res.render('Index'));
 
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
