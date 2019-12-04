@@ -10,7 +10,7 @@ app.use(express.json());
 //app.use(express.static('public'));
 
 app.get('/',(req, res) => {
-    fetch('about.html')
+    fetch('about')
     .catch(err => {
         console.log("oops");
         console.error(err);
