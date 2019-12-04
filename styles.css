@@ -10,12 +10,12 @@ body{
   margin:0;
   font-family: "Lato" sans-serif;
 }
-/*
+
 ul{
   list-style-type: none;
   margin:0;
   padding:0;
-}*/
+}
 
 /*.clearfix::after, .clearfix::before{
   content:" ";
@@ -68,13 +68,17 @@ ul{
   color:black;
   padding:16px;
   text-decoration:none;
+  text-align: center;
 }
 
-.sidebar a:hover{
+.sidebar-menu a:hover{
   background-color: red;
   color:white;
 }
-
+#sideLogo {
+  max-width: 250px;
+  max-height: 250px;
+}
 /*
 .sidebar .title-wrapper{
   float:left;
@@ -145,11 +149,12 @@ ul{
   height:1000px;
 }
 
+
 @media screen and (max-width: 700px){
   .sidebar{
-    width:100%
+    width:100%;
     height:auto;
-    position:relative;
+    position:relative
   }
   .sidebar a{
     float:left;
