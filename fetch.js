@@ -5,23 +5,15 @@ const apiURL = 'https://data.princegeorgescountymd.gov/resource/9r2z-mnpp.json'
 
 app.get(apiURL, (req, res) => {
   fetch(apiURL)
-    .then(r => r.json())
-    .then(data => r.map(i = i.facility_name, i.address, i.telephone))
-      console.log(data);
+    .then(r => r.json()
+    .then(data => data.map(a => ({name: a.facility_name, address: a.address, h_address: a.human_address, tel: a.telephone, web: a.website})))
+    .then(data => {
       
-    // Creating dictionary to hold data
-    const hospitalDict = {};
-
-    // Iterating through data & assigning key/value pairs
-    for(i = 0; i < data.length; i++) {
-      hospitalDict.facility_name = i.facility_name;
-      hospitalDict.geo = (i.address.latitude + ' ' + i.address.longitude);
-      hospitalDict.address = i.address.human_address;
-      hospitalDict.phone = i.telephone;
-    };
+      const hospitalDict = {};
     
-    // Creating Database
-    const dataBase = "db.sqlite"
+    }
+      // Creating Database
+      const dataBase = "db.sqlite"
 
     let db = new sqlite3.Database(dataBase, (err) => {
       if (err) {
@@ -46,10 +38,8 @@ app.get(apiURL, (req, res) => {
             }
           });
 
-    
-      
-
     });
+      }
 
     function buildTable(_dataBase, _hospitalDict) {
       for(i = 0; i < hospitalDict.length; i++) {
