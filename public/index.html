@@ -11,14 +11,39 @@
 </head>
 
 <body>
-  <div class="sidebar">
-    <span><img src="WebLogo.png" alt="PGHF Logo"></span>
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="practice.html">Help!</a>
-  </div>
-  <div class="content">
-    <div id="mapContainer"></div>
+  <div class="website-wrapper">
+    <section class= "sidebar section-padding">
+      <div class="flex-container">
+        <!--Logo-->
+        <div class="logo-website-wrapper">
+          <div class="logo-website">
+            <span><a href= "Practice.html"><img src="WebLogo.png" width= 185 alt="Prince George's Health Finder Logo"></a></span>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+
+
+        <div class="clearfix"></div>
+
+        <div class= sidebar-menu>
+            <div class="navigation clearfix">
+              <ul class="menu-list">
+                <li><a href="Index.html">Navigate</a></li>
+                <li><a href="About.html">About</a></li>
+                <li><a href="Index.html">Hospitals</a></li>
+                <li><a href="Index.html">Documentation</a></li>
+                <li><a href="Index.html">Contact Us</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+    </section>
+
+    <section class="content section-padding">
+      <div class="container">
+        <div id="mapContainer"></div>
+      </div>
+    </section>
   </div>
 
   <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
