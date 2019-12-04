@@ -11,6 +11,10 @@ app.use(express.json());
 
 app.get('/',(req, res) => {
     fetch('about.html')
+    .catch(err => {
+        console.log("oops");
+        console.error(err);
+    })
 })//res.render('index'));
 
 
