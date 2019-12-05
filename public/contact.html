@@ -50,38 +50,19 @@
     </section>
 
     <section class="content section-padding">
-      <div class="jumbotron">
-          <h1 style="text-align: center;">Your best source for hospital information in the PG county area</h1>
-          <p>
-              Prince Georges Health Finder (PGHF) provides information crucial to those in the Prince George's county area.
-              If in need of a health emergency, our website provides the distance to the closest hospital to anyone who is
-              in the PG county area. Here are the names, addresses and phone numbers of the hospitals in PG County.
-          </p>
-          <table>
-              <tbody>
-          <tr>
-              <th align="left">Hospital Name</th>
-              <th align="left">Address</th>
-              <th align="left">Phone Number</th>
-          </tr>
-          <tr>
-              <th align="left">Doctors Community Hospital</th>
-              <th align="left">8118 Good Luck Rd, Lanham, MD 20706</th>
-              <th align="left">(301) 552-8118</th>
-          </tr>
-          <tr>
-              <th align="left">Mt. Washington Pediatric Hospital at Prince George's Hospital Center</th>
-              <th align="left">3001 Hospital Dr, Cheverly, MD 20785</th>
-              <th align="left">(301) 618-6974</th>
-          </tr>
-          <tr>
-              <th align="left">University of Maryland Capital Region Health</th>
-              <th align="left">3001 Hospital Dr, Cheverly, MD 20785</th>
-              <th align="left">(301) 618-2000</th>
-          </tr>
-          </tbody>
-          </table>
-      </div>
+      <h1>Contact us</h1>
+      <p>Please let us know if a hospital information has changed or you want to submit information for a new hospital that we don't have.
+      Please make sure you provide us full address, phone number, website and any additional information of the hospital in the body of the message.</p>
+      <form action="/contact/send_contact_us" method="post">
+
+      <p><label for="from">Your email: </label>
+      <input id="contact_from" name="contact[from]" size="60" type="text" /></p>
+      <p><label for="subject">Subject:</label>
+      <input id="contact_subject" name="contact[subject]" size="60" type="text" /></p>
+      <p><label for="body">Message Body: </label> <br/>
+      <textarea cols="40" id="contact_body" name="contact[body]" rows="20"></textarea></p>
+      <input name="commit" type="submit" value="Send" />
+      </form>
     </section>
   </div>
 
