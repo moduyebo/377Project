@@ -9,6 +9,13 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
   <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+  integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <style>
+  .jumbotron {
+  background-color: #FF1302
+}
+  </style>
 
 <body>
   <div class="website-wrapper">
@@ -30,6 +37,7 @@
             <button type="button" onclick="address_to_map(document.getElementById('address_input').value)">Enter</button>
             </form>
             <div class="navigation clearfix">
+            <div class="jumbotron">
               <ul class="menu-list">
                 <li><a href="Index.html">Navigate</a></li>
                 <li><a href="about">About</a></li>
