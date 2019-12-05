@@ -38,7 +38,7 @@ ul{
 #mapContainer {
   height: 600px;
   width: 900px;
-  
+
 
 }
 
@@ -169,4 +169,16 @@ ul{
     text-align: center;
     float:none;
   }
+}
+
+table, th, td {
+  border: 2.5px solid black;
+  border-collapse: collapse;
+  align-items: center;
+  background-color: #f1f1c1
+}
+
+ th, td {
+  padding: 5px;
+  text-align: left;
 }
