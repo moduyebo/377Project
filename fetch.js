@@ -1,3 +1,5 @@
+const sqlite3 = require('sqlite3').verbose() 
+
 const apiURL = 'https://data.princegeorgescountymd.gov/resources/9r2z-mnpp.json'
 
 app.get(apiURL, (req, res) => {
@@ -8,14 +10,24 @@ app.get(apiURL, (req, res) => {
             web: a.website}))
         .then(data => {
 
-            const dataBase = 'db.sqlite'
+            // creating database file 
+            let db = new sqlite3.Datbase('./sqlite.db');
 
-            let db = new.sqlite3.Database(dataBase, (err) =>)
+            // creating hospitals table in db
+            let init = function () {
+                db.run('CREATE TABLE if not exists hospitals (' + 
+                    'name TEXT PRIMARY KEY,' +
+                    'geolocation TEXT,' +
+                    'address TEXT,' +
+                    'phone INTEGER,' +
+                    'website TEXT' + 
+                    ')');
+                
+                // inserting data into hospitals table  
+                data.forEach(item => {
+                    db.run('INSERT INTO hospitals(name,geolocation,address,phone,website) VALUES(name,latitude + ',' + longitiude,address,telephone,web) ');
+                });
+            }
+        }));
 
-
-
-
-        })
-
-
-})
+});
