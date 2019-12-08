@@ -22,3 +22,55 @@ app.use(express.json());
     1.5 loop through distance array & select least value
     1.6 query database for record with geolocation value relating to shortest distance
 */ 
+//post request that acquires user's address for processing.
+app.post('/api',  async (request, response) => { // i declared this function as async for my own purpose when testing you may not need it if that's the case feel free to remove it
+
+    // user address is found in request variable to access it the code is request.address
+    //SQLITE3CODE STARTS HERE
+
+
+    // feel free to delete this ******************const testee  = await address_to_latlong(request.body.urlz);
+    //console.log("--------------------------");
+    console.log(testee);
+
+
+
+
+    //Please send hospital lat and long that needs to be displayed along with the lat and long 
+    //of user input any other relevant information that gets displayed goes here aswell 
+    response.json({
+        //change this however is necessary nothing include in the braces is required
+        status: "success",
+        addy: request.body.urlz,
+        latitude: testee.lat,
+        longitude: testee.lng
+    });
+
+});
+
+// convert user address to lat and long coordinates
+async function address_to_latlong(address) {
+        
+    var latlong
+    try{
+      const response = await fetch('https://api.opencagedata.com/geocode/v1/json?q='+address+'&key=b0fd253b4b84485994275fdad6860620')
+      if (!response.ok) {
+        throw new Error('Network response was not ok.');
+      }
+      const json = await response.json()
+      //console.log(json)
+      if(json.status.code = 200){
+        latlong = json.results[0].geometry
+        //console.log(latlong)
+        return(latlong)
+      }else{
+        latlong = "Unable to locate address."
+        return(latlong)
+      }
+    }catch(error){
+        console.log('There has been a problem with your fetch operation: ', error.message);
+        latlong = 'There has been a problem with your fetch operation: ', error.message
+        return(latlong)
+    }
+      
+  }
