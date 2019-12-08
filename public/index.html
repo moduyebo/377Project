@@ -68,32 +68,6 @@
     //Add marker to map
     L.marker([38.9897, -76.9378]).addTo(map)
     .bindPopup('Your Location')
-
-    // mMarker is used in conjucntion with server post. This function takes the inputted user address, 
-    //sends it to the server where it is processed, server sends back latitude and longitude coordinates
-    // those coordinates are feed to the address to map fnction with plots the coordinates on the map.
-    function mMarker(address){
-      
-      const data = {address} ;
-      const options = {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-           },
-          body: JSON.stringify(data)
-        };
-        const response = await fetch('/api',options);
-        const json = await response.json();
-      
-        address_to_map(json.lat, json.lon, "User Location");
-        address_to_map(json.hLat, json.hLon, "Hospital Location");
-
-                    }
-
-    function address_to_map(lat, long, message){
-      L.marker([lat, long]).addTo(map).bindPopup(message)
-    }
-
   </script>
 </body>
 </html>
