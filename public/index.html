@@ -84,14 +84,14 @@
         };
         const response = await fetch('/api',options);
         const json = await response.json();
-        address_to_map(json.latitude, json.longitude, "Entered address")
+      
+        address_to_map(json.lat, json.lon, "User Location");
+        address_to_map(json.hLat, json.hLon, "Hospital Location");
+
                     }
 
-    async function address_to_map(address){
-
-      latlong = await address_to_latlong(address)
-      L.marker([latlong.lat, latlong.lng]).addTo(map).bindPopup("Entered Address")
-
+    function address_to_map(lat, long, message){
+      L.marker([lat, long]).addTo(map).bindPopup(message)
     }
 
   </script>

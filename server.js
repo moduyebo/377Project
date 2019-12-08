@@ -22,6 +22,7 @@ app.use(express.json());
     1.5 loop through distance array & select least value
     1.6 query database for record with geolocation value relating to shortest distance
 */ 
+
 //post request that acquires user's address for processing.
 app.post('/api',  async (request, response) => { // i declared this function as async for my own purpose when testing you may not need it if that's the case feel free to remove it
 
@@ -39,11 +40,14 @@ app.post('/api',  async (request, response) => { // i declared this function as 
     //Please send hospital lat and long that needs to be displayed along with the lat and long 
     //of user input any other relevant information that gets displayed goes here aswell 
     response.json({
-        //change this however is necessary nothing include in the braces is required
-        status: "success",
-        addy: request.body.urlz,
-        latitude: testee.lat,
-        longitude: testee.lng
+        //change this however is necessary nothing include in the braces is required the key names you remain constant though
+        //you can also add any extra key&values you want to display on the map here then use the additions in the index file. 
+        // if youre having any issues with making use of any added key&value pairs let me know and i can help out.
+        status: "success", //key/value pairs need to be comma seperated
+        //hLat: // hospital latitude value goes here
+        //hLon: //hospital longitude value goes here
+        //lat: //user input latitude goes here
+        //lon: //user input lon goes here
     });
 
 });
