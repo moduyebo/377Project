@@ -12,6 +12,7 @@
  "dependencies": {
   "express": "^4.16.4",
   "md5": "^2.2.1",
-  "node-fetch": "^2.6.0"
+  "node-fetch": "^2.6.0",
+  "sqlite3": "^4.1.1"
  }
 }
