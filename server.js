@@ -25,15 +25,23 @@ app.use(express.json());
 
 //post request that acquires user's address for processing.
 app.post('/api',  async (request, response) => {
-    // i declared this function as async for my own purpose when testing you may not need it if that's the case feel free to remove it
+    // i declared this function as async for my own purpose when testing you may not need it 
+    //if that's the case feel free to remove it
+    const address = request.address;
+    userLoc = await address_to_latlong(address);
+
+    fetch('/ssp')
+      .then(r => console.log(r))
+
+
 
     // user address is found in request variable to access it the code is request.address
     //SQLITE3CODE STARTS HERE
 
 
     // feel free to delete this ******************const testee  = await address_to_latlong(request.body.urlz);
-    //console.log("--------------------------");
-    console.log(testee);
+    console.log("--------------------------");
+    //console.log(testee);
 
 
 
@@ -49,9 +57,18 @@ app.post('/api',  async (request, response) => {
         //hLon: //hospital longitude value goes here
         //lat: //user input latitude goes here
         //lon: //user input lon goes here
+        ret: r
     });
 
 });
+
+function dbQuery() {
+  let query = db.run('SELECT geolocation FROM hospitals');
+  
+  const keys = []
+  query.forEach(result => {
+      keys.push()
+})};
 
 // convert user address to lat and long coordinates
 async function address_to_latlong(address) {

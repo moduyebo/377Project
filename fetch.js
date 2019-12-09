@@ -1,12 +1,12 @@
 const sqlite3 = require('sqlite3').verbose() 
 
-app.get('\api', (req, res) => {
+app.get('/ssp', (req, res) => {
     const apiURL = 'https://data.princegeorgescountymd.gov/resources/9r2z-mnpp.json'
     fetch(apiURL)
         .then(r => r.json())
         .then(data => data.map(a => ({name: a.facility_name, latitude: a.address.latitude, 
             longitude: a.address.longitude, address: a.address.human_address, telephone: a.telephone,
-            web: a.website}))
+            web: a.website})))
         .then(data => {
 
             // creating database file 
@@ -26,7 +26,10 @@ app.get('\api', (req, res) => {
                 data.forEach(item => {
                     db.run('INSERT INTO hospitals(name,geolocation,address,phone,website) VALUES(name,latitude + ',' + longitiude,address,telephone,web) ');
                 });
+                
             }
-        }));
+            return db;
+        })
+        
 
 });

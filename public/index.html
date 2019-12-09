@@ -75,7 +75,7 @@
     //sends it to the server where it is processed, server sends back latitude and longitude coordinates
     // those coordinates are feed to the address to map fnction with plots the coordinates on the map.
     function mMarker(address){
-      
+          
       const data = {address} ;
       const options = {
           method: 'POST',
@@ -87,9 +87,9 @@
         const response = await fetch('/api',options);
         const json = await response.json();
       
-        address_to_map(json.lat, json.lon, "User Location");
-        address_to_map(json.hLat, json.hLon, "Hospital Location");
-
+        //address_to_map(json.lat, json.lon, "User Location");
+        //address_to_map(json.hLat, json.hLon, "Hospital Location");
+        
                     }
 
     function address_to_map(lat, long, message){
