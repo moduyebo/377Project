@@ -1,0 +1,62 @@
+In index.html, the onclick event would call the function loadData()
+
+This function would be defined in server.js
+This would execute the fecth file, which would create the database
+
+function loadData() {
+    console.log('fetch'); // confirm code is running on click
+      fetch('/api')
+}
+
+#1 - Converting Address to Geolocation Coordinates 
+
+const address = user_input
+userLoc = address_to_latlong(address);    // calling address_to_latlong function 
+
+
+#2 - Query for All Geolocation Values in Database
+
+function dbQuery() {
+    let query = db.run('SELECT geolocation FROM hospitals');
+    
+    const keys = []
+    query.forEach(result => {
+        keys.push()
+})};
+
+
+#3 Calculating distance between user address & each hospital
+
+const values = []
+queryArr.forEach(key => {
+    distance = latlong_distance(userLoc);
+    values.push(distance);
+
+    values.min = function(values){
+    return Math.min.apply( Math, values );
+
+    minimum = values.min(values);
+};
+});
+
+#4 creating a dictionary to hold all geolocation values with correlated distances
+
+const storedData = {};
+keys.forEach((key, i) => result[key] = values[i]);
+
+
+#5 finding hospitals geolocation with distance equal to minimum distance 
+
+const resultSet = 
+
+** NEED FUNCTION TO FIND KEY VALUE PAIR WHERE VALUE = MININMUM
+** store key value to variable Hospital
+
+
+#6 SQLite Query to return data for closest hospital
+function findHosp(Hospital) {
+    db.run('SELECT * FROM hopsitals WHERE geolocation = minimum')
+}
+
+
+

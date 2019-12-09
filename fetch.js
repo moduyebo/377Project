@@ -1,8 +1,7 @@
 const sqlite3 = require('sqlite3').verbose() 
 
-const apiURL = 'https://data.princegeorgescountymd.gov/resources/9r2z-mnpp.json'
-
-app.get(apiURL, (req, res) => {
+app.get('\api', (req, res) => {
+    const apiURL = 'https://data.princegeorgescountymd.gov/resources/9r2z-mnpp.json'
     fetch(apiURL)
         .then(r => r.json())
         .then(data => data.map(a => ({name: a.facility_name, latitude: a.address.latitude, 

@@ -24,7 +24,8 @@ app.use(express.json());
 */ 
 
 //post request that acquires user's address for processing.
-app.post('/api',  async (request, response) => { // i declared this function as async for my own purpose when testing you may not need it if that's the case feel free to remove it
+app.post('/api',  async (request, response) => {
+    // i declared this function as async for my own purpose when testing you may not need it if that's the case feel free to remove it
 
     // user address is found in request variable to access it the code is request.address
     //SQLITE3CODE STARTS HERE
