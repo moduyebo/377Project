@@ -128,7 +128,7 @@
               <h3 class="section-title">Input your address</h3>
               <div class="container about-container wow fadeInUp"
               <form>
-              <textarea id="address_input"></textarea>
+              <textarea id="address_input">"address, city"</textarea>
               <button type="button" onclick="mMarker(document.getElementById('address_input').value)">Search</button>
               </form>
     <div class="container about-container wow fadeInUp">
@@ -292,32 +292,50 @@
     .bindPopup('Your Location')
   </script>
 
-  <script>
-  function mMarker(address){
-
-    const data = {address} ;
-    const options = {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-         },
-        body: JSON.stringify(data)
-      };
-      const response = await fetch('/api',options);
-      const json = await response.json();
-
-
-  function address_to_map(lat, long, message){
-    L.marker([lat, long]).addTo(map).bindPopup(message)
-  }
-  </script>
-
   <!-- Template Specisifc Custom Javascript File -->
   <script src="js/custom.js"></script>
 
   <script src="contactform/contactform.js"></script>
 
+  <script>
+    
+    // mMarker is used in conjucntion with server post. This function takes the inputted user address, 
+    //sends it to the server where it is processed, server sends back latitude and longitude coordinates
+    // those coordinates are feed to the address to map fnction with plots the coordinates on the map.
+    async function mMarker(address){
+          
+      const data = {address} ;
+      const options = {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+           },
+          body: JSON.stringify(data)
+        };
+        const response = await fetch('/api',options);
+        //console.log("CODE ORANGE",response);
+        const json = await response.json();
+        console.log("CODE ORANGE",json);
+        /*The json object abve contains the current fields:
+         status: "success",
+                lat: userLoc.lat,
+                lng: userLoc.lng,
+                dist: res.dist,
+                hLat: res.hosp.latitude,
+                hLon: res.hosp.longitude,
+                hospName: res.hosp.name,
+                hospTele: res.hosp.telephone,
+                hospWeb: res.hosp.website */
 
+        address_to_map(json.lat, json.lng, "Your Location:\n" + address);
+        address_to_map(json.hLat, json.hLon, "Nearest Hospital: " + json.hospName);
+        
+                    }
+
+    function address_to_map(lat, long, message){
+      L.marker([lat, long]).addTo(map).bindPopup(message)
+    }
+  </script>
 </body>
 
 </html>

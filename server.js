@@ -27,48 +27,84 @@ app.use(express.json());
 app.post('/api',  async (request, response) => {
     // i declared this function as async for my own purpose when testing you may not need it 
     //if that's the case feel free to remove it
-    const address = request.address;
-    userLoc = await address_to_latlong(address);
-
-    fetch('/ssp')
-      .then(r => console.log(r))
+    const addy = response.req.body.address;
+    userLoc = await address_to_latlong(addy);
+    var answer = await loadData(userLoc);
 
 
+    async function loadData(user){
+      const apiURL = 'https://data.princegeorgescountymd.gov/resource/9r2z-mnpp.json'
+        fetch(apiURL)
+            .then(r => r.json())
+            .then(data => data.map(a => ({name: a.facility_name, latitude: a.address.latitude, 
+                longitude: a.address.longitude, address: a.address.human_address, telephone: a.telephone,
+                web: a.website})))
+            .then(data => {
+              //console.log(data);
+              var lowest = 100000000000000000000000;
+              var hold;
+              for (i = 0; i < data.length; i++){
+                var temp = latlong_distance({lat: user.lat, lng: user.lng}, {lat: data[i].latitude, lng: data[i].longitude});
+                if (temp < lowest){
+                  lowest = temp;
+                  hold = data[i];
+                }
+              }
+              return {dist: lowest, hosp: hold};
+                    })
+            .then(res => {
+              //console.log("0000000000000000000000000000000000000000000000000000\n",res.hosp.address.address, res.hos.name);
+              var temp = res.hosp.address;
+              response.json({
+                status: "success",
+                lat: userLoc.lat,
+                lng: userLoc.lng,
+                dist: res.dist,//change this however is necessary nothing include in the braces is required the key names you remain constant though
+                hLat: res.hosp.latitude,
+                hLon: res.hosp.longitude,
+                hospName: res.hosp.name,
+                hospTele: res.hosp.telephone,
+                hospWeb: res.hosp.website
+            });
+                  })
+    
+    }
 
-    // user address is found in request variable to access it the code is request.address
-    //SQLITE3CODE STARTS HERE
+                      });
 
+async function loadData(user){
+  const apiURL = 'https://data.princegeorgescountymd.gov/resource/9r2z-mnpp.json'
+    fetch(apiURL)
+        .then(r => r.json())
+        .then(data => data.map(a => ({name: a.facility_name, latitude: a.address.latitude, 
+            longitude: a.address.longitude, address: a.address.human_address, telephone: a.telephone,
+            web: a.website})))
+        .then(data => {
+          console.log(data);
+          var lowest = 100000000000000000000000;
+          var hold;
+          for (i = 0; i < data.length; i++){
+            var temp = latlong_distance({lat: user.lat, lng: user.lng}, {lat: data[i].latitude, lng: data[i].longitude});
+            if (temp < lowest){
+              lowest = temp;
+              hold = data[i];
+            }
+          }
+          return {dist: lowest, hosp: hold};
+                })
+        .then(res => {
+          response.json({
+            status: "success",
+            lat: userLoc.lat,
+            lng: userLoc.lng,
+            dist: answer.dist,//change this however is necessary nothing include in the braces is required the key names you remain constant though
+            hLat: answer.hosp.latitude,
+            hLon: answer.hosp.longitude//hospital longitude value goes here
+    
+        });
+              })
 
-    // feel free to delete this ******************const testee  = await address_to_latlong(request.body.urlz);
-    console.log("--------------------------");
-    //console.log(testee);
-
-
-
-
-    //Please send hospital lat and long that needs to be displayed along with the lat and long 
-    //of user input any other relevant information that gets displayed goes here aswell 
-    response.json({
-        //change this however is necessary nothing include in the braces is required the key names you remain constant though
-        //you can also add any extra key&values you want to display on the map here then use the additions in the index file. 
-        // if youre having any issues with making use of any added key&value pairs let me know and i can help out.
-        status: "success", //key/value pairs need to be comma seperated
-        //hLat: // hospital latitude value goes here
-        //hLon: //hospital longitude value goes here
-        //lat: //user input latitude goes here
-        //lon: //user input lon goes here
-        ret: r
-    });
-
-});
-
-function dbQuery() {
-  let query = db.run('SELECT geolocation FROM hospitals');
-  
-  const keys = []
-  query.forEach(result => {
-      keys.push()
-})};
+}
 
 // convert user address to lat and long coordinates
 async function address_to_latlong(address) {
@@ -93,6 +129,27 @@ async function address_to_latlong(address) {
         console.log('There has been a problem with your fetch operation: ', error.message);
         latlong = 'There has been a problem with your fetch operation: ', error.message
         return(latlong)
-    }
-      
+    }   
   }
+
+    //Takes in an object {"lat":123,"lng":123}
+function latlong_distance(latlng1, latlng2){
+    
+  const R = 6371e3;
+  var pi = Math.PI;
+
+  var lat1 = latlng1.lat * (pi/180);
+  var lat2 = latlng2.lat * (pi/180);
+
+  var delta_lat = (latlng2.lat - latlng1.lat) * (pi/180);
+  var delta_lng = (latlng2.lng - latlng1.lng) * (pi/180);
+
+  var a = Math.sin(delta_lat/2) * Math.sin(delta_lat/2) +
+      Math.cos(lat1) * Math.cos(lat2) *
+      Math.sin(delta_lng/2) * Math.sin(delta_lng/2);
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+
+  var d = (R * c) / 1000;
+  return(d)
+
+}
