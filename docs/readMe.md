@@ -12,4 +12,13 @@ PGHF allows a user to input an address, which could be their current location, o
  
 # Deveveloper's Guide
 
-**fill in here** 
+**Install**
+Installing PGHF is as easing as pulling the repository from Github. https://github.com/michaeloduyebo/377Project 
+
+**Running the Application**
+
+**Testing**
+
+**Endpoints**
+
+**Expectations**
