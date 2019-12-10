@@ -13,12 +13,18 @@ PGHF allows a user to input an address, which could be their current location, o
 # Deveveloper's Guide
 
 **Install**
+PGHF requires Node.js, Express, and SQLite3. Install through command line before proceeding. 
 Installing PGHF is as easing as pulling the repository from Github. https://github.com/michaeloduyebo/377Project 
 
 **Running the Application**
 
+
 **Testing**
 
+
 **Endpoints**
+GET - retrieves json data from PG county Open Data API 
+POST - stores data in remote file
+PUT - sends data to the front end 
 
 **Expectations**
