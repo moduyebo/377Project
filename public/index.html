@@ -115,8 +115,7 @@
              This means for the most part, in the UMD area and its surrounding area, a large
              group of individuals may not be a knowledgable about medical services in the
              area. This application will be very useful in locating these emergency services
-             in the area, This application will be very useful in locating these emergency
-             services not only for students but anyone withing the PG County area.</p>
+             in the area, as well as anyone within the PG County area.</p>
         </div>
       </div>
     </div>
@@ -298,12 +297,12 @@
   <script src="contactform/contactform.js"></script>
 
   <script>
-    
-    // mMarker is used in conjucntion with server post. This function takes the inputted user address, 
+
+    // mMarker is used in conjucntion with server post. This function takes the inputted user address,
     //sends it to the server where it is processed, server sends back latitude and longitude coordinates
     // those coordinates are feed to the address to map fnction with plots the coordinates on the map.
     async function mMarker(address){
-          
+
       const data = {address} ;
       const options = {
           method: 'POST',
@@ -330,7 +329,7 @@
         address_to_map(json.lat, json.lng, "Your Location:\n" + address);
         address_to_map(json.hLat, json.hLon, "Nearest Hospital: " + json.hospName);
         map.setView([38.845009, -76.848825], 10)
-        
+
                     }
 
     function address_to_map(lat, long, message){
