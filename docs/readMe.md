@@ -35,11 +35,11 @@ PUT - sends data to the front end
 
 Current Bugs: 
 
-⋅⋅*  Loading in JSON data into SQLite
-⋅⋅*  Querying SQLite database for values equal to a variable
+-  Loading in JSON data into SQLite
+-  Querying SQLite database for values equal to a variable
 
 Future Work: 
 
-⋅⋅* Set to return all hospitals first, before beginning to try to return specific ones
-⋅⋅*  In beginning stages, load data directly into server rather than remote location in order to streamline your coding prcoess. Then begin experimenting with remote storage. 
+- Set to return all hospitals first, before beginning to try to return specific ones
+- In beginning stages, load data directly into server rather than remote location in order to streamline your coding prcoess. Then begin experimenting with remote storage. 
 
