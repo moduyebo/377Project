@@ -23,8 +23,9 @@ Installing PGHF is as easing as pulling the repository from Github. https://gith
 
 
 **Endpoints**
-GET - retrieves json data from PG county Open Data API 
-POST - stores data in remote file
-PUT - sends data to the front end 
+
+GET - retrieves json data from PG county Open Data API . 
+POST - stores data in remote file .
+PUT - sends data to the front end .
 
 **Expectations**
